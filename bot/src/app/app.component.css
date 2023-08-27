@@ -1,0 +1,16 @@
+.bot-panel {
+  z-index: 9999;
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  border-radius: 2px;
+}
+
+.bot-panel .bot-content {
+  background: white;
+  margin: 0 auto;
+  height: 200px;
+  border-radius: 5px;
+  width: 90%;
+}

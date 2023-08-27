@@ -1,0 +1,31 @@
+<div class="relative h-full w-28 sm:w-44 md:w-56 lg:w-64 p-2 md:p-8 flex flex-col justify-center md:justify-between rounded-md border text-xs lg:text-sm"
+  [ngClass]="{
+    'border-gray-200': isCurrentStep,
+    'border-gray-50': !isCurrentStep,
+  }"
+>
+  <div class="absolute left-1 top-1 w-4 h-4 flex place-content-center rounded-full"
+    [ngClass]="{
+      'bg-gray-700': isCurrentStep,
+      'bg-gray-100': !isCurrentStep,
+    }"
+  >
+    <span class="text-xs"
+      [ngClass]="{
+        'text-white': isCurrentStep,
+        'text-gray-300': !isCurrentStep,
+      }"
+    >
+      {{ stepNb }}
+    </span>
+  </div>
+  <p class="text-center flex-grow hidden md:block"
+    [ngClass]="{
+      'text-gray-700': isCurrentStep,
+      'text-gray-300': !isCurrentStep,
+    }"
+  >
+    {{ instruction }}
+  </p>
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,27 @@
+{
+  "name": "Bot Do IT Big v2",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:4200/*"],
+      "js": [
+        "src/js/lib/browser-polyfill.js",
+        "src/js/content.js",
+        "runtime.js",
+        "polyfills.js",
+        "main.js"
+      ],
+      "css": [
+        "src/css/content.css",
+        "styles.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "src/js/background.js",
+    "type": "module"
+  }
+}

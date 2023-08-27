@@ -1,0 +1,51 @@
+.bot-selectable-container,
+.bot-item-selected__manually,
+.bot-item-selected__predicted,
+.bot-action-selected__manually,
+.bot-action-selected__predicted {
+  position: relative;
+}
+
+.select-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(255, 209, 102, .3);
+  border: 2px solid rgb(255, 209, 102);
+  opacity: 0;
+
+}
+.select-overlay:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.bot-item-selected__manually::before,
+.bot-item-selected__predicted::before,
+.bot-action-selected__manually::after,
+.bot-action-selected__predicted::after {
+  content: var(--content);
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color);
+  font-size: x-small;
+  color: var(--color);
+}
+.bot-item-selected__manually::before {
+  --content: "selected";
+  --color: fuchsia;
+}
+.bot-item-selected__predicted::before {
+  --content: "predicted";
+  --color: blueviolet;
+}
+.bot-action-selected__manually::after {
+  --content: "";
+  --color: green;
+  background-color: rgba(0, 128, 0, .5);
+}
+.bot-action-selected__predicted::after {
+  --content: "";
+  --color: blue;
+  background-color: rgba(0, 0, 255, .5);
+}

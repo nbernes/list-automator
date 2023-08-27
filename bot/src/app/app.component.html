@@ -1,0 +1,37 @@
+<div id="bot-extension" class="bot-panel">
+  <div class="bot-content w-full p-4 flex justify-evenly">
+    <bot-section [stepNb]="1" [isCurrentStep]="currentStep === 0" instruction="Select 2 similar elements (the rest will be predicted)">
+      <bot-button
+        [type]="currentStep > 0 ? 'done' : 'switch'"
+        [isEnabled]="currentStep === 0"
+        (onClicked)="toggleItemSelect($event)"
+        (onRevert)="revertItemSelect()"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-auto">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" />
+        </svg>
+        Select Elements
+      </bot-button>
+    </bot-section>
+
+    <bot-section [stepNb]="2" [isCurrentStep]="currentStep === 1" instruction="Select an action to execute for each selected element">
+      <bot-button
+        [type]="currentStep > 1 ? 'done' : 'switch'"
+        [isEnabled]="currentStep === 1"
+        (onClicked)="toggleActionSelect($event)"
+        (onRevert)="revertActionSelect()"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-auto">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+        </svg>
+        Select Action
+      </bot-button>
+    </bot-section>
+
+    <bot-section [stepNb]="3" [isCurrentStep]="currentStep === 2" instruction="Execute the action for each selected elements">
+      <bot-button type="action" [isEnabled]="currentStep === 2" (click)="runActions()">
+        Run
+      </bot-button>
+    </bot-section>
+  </div>
+</div>
