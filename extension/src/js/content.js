@@ -43,6 +43,17 @@ class ElementController {
     return res;
   }
 
+  #countParentElements = (elem) => {
+    let count = 0;
+    let parent = elem.parentElement;
+
+    while (parent) {
+      count++;
+      parent = parent.parentElement;
+    }
+    return count;
+  }
+
   #makeElementsSelectable = (elems, selectHandler) => {
     elems.forEach((elem) => {
       elem.classList.add(this.#CLASS_DICT.selectableContainer);
@@ -58,12 +69,19 @@ class ElementController {
     if (selectedItems.length < 2) { return; }
 
     const template = selectedItems[0];
+    const templateClassList = Array.from(template.classList.values());
+    templateClassList.splice(templateClassList.indexOf(this.#CLASS_DICT.itemSelected), 1);
+    const templateClassName = templateClassList.join(' ');
+
     selectableItems.forEach((elem) => {
       const overlay = elem.querySelector(`.${this.#CLASS_DICT.selectOverlay}`);
       this.#deleteSelectOverlay(overlay);
-      if (elem.parentElement === template.parentElement) {
-        elem.classList.add(this.#CLASS_DICT.itemPredicted);
-        this.#selectedItems.push(elem);
+
+      if (elem.className === templateClassName && elem.tagName === template.tagName) {
+        if (this.#countParentElements(elem) === this.#countParentElements(template)) {
+          elem.classList.add(this.#CLASS_DICT.itemPredicted);
+          this.#selectedItems.push(elem);
+        }
       }
     });
     this.selectableItems = [];
