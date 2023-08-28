@@ -1,7 +1,6 @@
 ///<reference types="chrome"/>
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-// import browser from 'webextension-polyfill';
 
 export interface Message {
   type: string;

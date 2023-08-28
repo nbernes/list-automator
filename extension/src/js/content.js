@@ -111,7 +111,7 @@ class ElementController {
     }
 
     this.#predictNextSelectedItems(this.#selectedItems, this.#selectableItems);
-    browser.runtime.sendMessage({
+    chrome.runtime.sendMessage({
       type: "itemsSelected",
       log: `${this.#selectedItems.length} items selected`
     });
@@ -138,7 +138,7 @@ class ElementController {
       elem.classList.add(this.#CLASS_DICT.actionPredicted);
     });
     this.#selectedActions.push(selected, ...predicted);
-    browser.runtime.sendMessage({
+    chrome.runtime.sendMessage({
       type: "actionsSelected",
       log: `${this.#selectedActions.length} actions selected`
     });
@@ -211,12 +211,12 @@ class ElementController {
 
   revertItemSelect = () => {
     this.cancelItemSelect();
-    browser.runtime.sendMessage({type: "revertedLastSelection"});
+    chrome.runtime.sendMessage({type: "revertedLastSelection"});
   }
 
   revertActionSelect = () => {
     this.cancelActionSelect();
-    browser.runtime.sendMessage({type: "revertedLastSelection"});
+    chrome.runtime.sendMessage({type: "revertedLastSelection"});
   }
 
   runActions = () => {
@@ -227,7 +227,7 @@ class ElementController {
     this.#clearAddedStyles();
     this.#selectedItems = [];
     this.#selectedActions = [];
-    browser.runtime.sendMessage({
+    chrome.runtime.sendMessage({
       type: "actionsRan",
       log: `${actionsNb} actions selected`
     });
@@ -246,7 +246,7 @@ const messageHandlerMap = {
   runActions: elemController.runActions,
 }
 
-browser.runtime.onMessage.addListener((message, _) => {
+chrome.runtime.onMessage.addListener((message, _) => {
   if (Object.keys(messageHandlerMap).includes(message.type)) {
     messageHandlerMap[message.type]();
   }

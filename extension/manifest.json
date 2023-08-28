@@ -7,7 +7,6 @@
     {
       "matches": ["http://localhost:4200/*"],
       "js": [
-        "src/js/lib/browser-polyfill.js",
         "src/js/content.js",
         "runtime.js",
         "polyfills.js",

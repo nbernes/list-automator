@@ -3,8 +3,8 @@
   class="p-3 w-full flex justify-evenly align-middle rounded-full enabled:hover:opacity-80 enabled:active:opacity-60 disabled:bg-gray-50 disabled:text-gray-200"
   [ngClass]="{
     'bg-black text-white': type === 'action',
-    'bg-gray-200': type === 'switch' && !isSwitchToggled,
-    'border border-2 border-amber-400 bg-amber-100': type === 'switch' && isSwitchToggled,
+    'border-2 border-amber-400 bg-amber-100': type === 'switch' && isSwitchToggled,
+    'bg-gray-200': type === 'switch' && !isSwitchToggled
   }"
   [disabled]="!isEnabled"
   (click)="onClick()"
