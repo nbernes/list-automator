@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
 type ButtonType = 'switch' | 'action' | 'done';
 
@@ -26,9 +26,12 @@ export class ButtonComponent {
   @Output() onClicked = new EventEmitter<boolean>();
   @Output() onRevert = new EventEmitter<void>();
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   onClick() {
     if (this.type === 'switch') {
       this.isSwitchToggled = !this.isSwitchToggled;
+      this.cdr.detectChanges();
     }
     this.onClicked.emit(this.isSwitchToggled);
   }
