@@ -75,9 +75,23 @@ class ElementController {
     selected.classList.add(this.#CLASS_DICT.itemSelected);
     this.#selectableItems.splice(this.#selectableItems.indexOf(selected), 1);
     this.#selectedItems.push(selected);
+
     if (this.#selectedItems.length < 2) {
+      let unselectableElems = [];
+      this.#selectableItems = this.#selectableItems.filter(item => {
+        if (item.parentElement === selected.parentElement && item.tagName === selected.tagName) {
+          return true;
+        }
+        unselectableElems.push(item);
+        return false;
+      });
+      unselectableElems.forEach((elem) => {
+        const overlay = elem.querySelector(`.${this.#CLASS_DICT.selectOverlay}`);
+        this.#deleteSelectOverlay(overlay);
+      });
       return;
     }
+
     this.#predictNextSelectedItems(this.#selectedItems, this.#selectableItems);
     browser.runtime.sendMessage({
       type: "itemsSelected",
