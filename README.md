@@ -1,8 +1,6 @@
-# Automation challenge
+# List Automator
 
-Simple bot to automate tasks on lists of items in web apps.
-
-> :warning: This project is a Chrome extension - as such it will only work on Chrome or Chromium-based browsers.
+Simple chrome extension to automate tasks on lists of items in web apps.
 
 ## Installation
 
